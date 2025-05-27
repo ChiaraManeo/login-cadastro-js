@@ -2,7 +2,7 @@ name: Executar Testes com Jest
 
 on:
   push:
-    branches: [ "main" ]  
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -19,9 +19,17 @@ jobs:
         with:
           node-version: 18
 
+      - name: Limpar cache do npm
+        run: npm cache clean --force
+
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar os testes
-        run: npx jest
+      - name: Verificar arquivo jest
+        run: ls -l ./node_modules/.bin/jest
 
+      - name: Ajustar permissão do jest
+        run: chmod +x ./node_modules/.bin/jest
+
+      - name: Rodar os testes
+        run: ./node_modules/.bin/jest

@@ -1,11 +1,16 @@
-// 1) Importar apenas o que precisamos
+// 1) Importar Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
 import {
     getAuth,
     createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-// 2) Sua configuração do Firebase
+// 2) Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDHKI9AmjtLB1Kj2I11E2wsFuECwXx8Nu0",
     authDomain: "meu-app-3f6c8.firebaseapp.com",
@@ -16,34 +21,46 @@ const firebaseConfig = {
     measurementId: "G-CHEYT800E7"
 };
 
-// 3) Inicializar Firebase e obter Auth
+// 3) Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// 4) Escutar o envio do formulário de cadastro
-document.getElementById("cadastroForm")
-    .addEventListener("submit", async (e) => {
-        e.preventDefault();
+// 4) Escutar o envio do formulário
+document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const senha = document.getElementById("senha").value;
-        const confirma = document.getElementById("confirmarSenha").value;
+    const nome = document.getElementById("nome").value;
+    const usuario = document.getElementById("usuario").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+    const confirma = document.getElementById("confirmarSenha").value;
 
-        if (senha !== confirma) {
-            alert("As senhas não coincidem.");
-            return;
-        }
+    if (senha !== confirma) {
+        alert("As senhas não coincidem.");
+        return;
+    }
 
-        try {
-            await createUserWithEmailAndPassword(auth, email, senha);
-            alert("Usuário cadastrado com sucesso!");
-            window.location.href = "index.html"; // volta ao login
-        } catch (err) {
-            alert("Erro ao cadastrar: " + err.message);
-        }
-    });
+    try {
+        const credenciais = await createUserWithEmailAndPassword(auth, email, senha);
+        const user = credenciais.user;
 
-// 5) Olhinho para senha principal
+        // Salvar dados adicionais no Firestore
+        await addDoc(collection(db, "usuarios"), {
+            uid: user.uid,
+            nome: nome,
+            usuario: usuario,
+            email: email
+        });
+
+        alert("Usuário cadastrado com sucesso!");
+        window.location.href = "index.html";
+    } catch (err) {
+        alert("Erro ao cadastrar: " + err.message);
+    }
+});
+
+// 5) Olhinho para senha
 const senhaInput = document.getElementById("senha");
 const toggleSenha = document.getElementById("toggleSenha");
 toggleSenha.addEventListener("click", () => {
@@ -53,7 +70,7 @@ toggleSenha.addEventListener("click", () => {
     toggleSenha.classList.toggle("fa-eye-slash");
 });
 
-// 6) Olhinho para confirmação de senha
+// 6) Olhinho para confirmar senha
 const confirmaInput = document.getElementById("confirmarSenha");
 const toggleConfirma = document.getElementById("toggleConfirmarSenha");
 toggleConfirma.addEventListener("click", () => {

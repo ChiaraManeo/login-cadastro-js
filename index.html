@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+    <!-- sua folha de estilos -->
+    <link rel="stylesheet" href="./css/login.css">
+
+    <!-- Font Awesome para o olhinho e ícones sociais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Importa apenas o que vamos usar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+        // Sua configuração (pega do console do Firebase)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHKI9AmjtLB1Kj2I11E2wsFuECwXx8Nu0",
+            authDomain: "meu-app-3f6c8.firebaseapp.com",
+            projectId: "meu-app-3f6c8",
+            storageBucket: "meu-app-3f6c8.firebasestorage.app",
+            messagingSenderId: "132012104556",
+            appId: "1:132012104556:web:e8341c1f885ca00585f149",
+            measurementId: "G-CHEYT800E7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Expondo para que login.js possa usar
+        window.firebaseAuth = auth;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Entrar</h2>
+            <form id="loginForm">
+                <input type="email" id="usuario" placeholder="E-mail" required>
+                <div class="campo-senha">
+                    <input type="password" id="senha" placeholder="Senha" required>
+                    <i id="toggleSenha" class="fas fa-eye"></i>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <div class="social-login">
+                <p>ou entre com</p>
+                <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="https://accounts.google.com" target="_blank" class="social-icon">
+                    <i class="fab fa-google-plus-square"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h2>Bem-vindo de volta!</h2>
+            <p>Estamos felizes em te ver novamente. Faça login para continuar.</p>
+            <button id="botaoCadastro">Ainda não possui conta? Cadastre-se</button>
+        </div>
+    </div>
+
+    <!-- seu JS de login, em módulo -->
+    <script type="module" src="./js/login.js"></script>
+</body>
+
+</html>

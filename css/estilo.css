@@ -1,0 +1,164 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Roboto', sans-serif;
+ }
+
+ a {
+     text-decoration: none;
+ }
+
+ body {
+     background: linear-gradient(to right, #b5ebde, #6fd9dd);
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .container {
+     background-color: #fff;
+     width: 800px;
+     height: 500px;
+     display: flex;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     border-radius: 10px;
+     overflow: hidden;
+ }
+
+ .card {
+     width: 60%;
+     padding: 40px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .card form {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .card h2 {
+     margin-bottom: 20px;
+     color: #333;
+ }
+
+ .card input {
+     padding: 12px;
+     margin: 10px 0;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     outline: none;
+     width: 80%;
+ }
+
+ .card button {
+     padding: 12px;
+     background-color: #ff7c02;
+     color: #fff;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-top: 10px;
+     transition: background 0.3s;
+     width: 80%;
+ }
+
+ .card button:hover {
+     background-color: #f78f2e;
+ }
+
+ .social-login {
+     text-decoration: none;
+     margin-top: 20px;
+     display: inline-block;
+ }
+
+ .social-login p {
+     margin-bottom: 10px;
+     color: #666;
+ }
+
+ .social-login i {
+     font-size: 24px;
+     margin-right: 10px;
+     cursor: pointer;
+ }
+
+ .info {
+     background: linear-gradient(to right, #f78f2e, #ff7c02);
+     width: 40%;
+     color: #fff;
+     padding: 40px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+ }
+
+ .info h2 {
+     margin-bottom: 20px;
+ }
+
+ .info p {
+     margin-bottom: 20px;
+ }
+
+ .info button {
+     display: inline-block;
+     padding: 12px;
+     background-color: #ff7c02;
+     color: #fff;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-top: 10px;
+     transition: background 0.3s;
+     width: 80%;
+ }
+
+ .info button:hover {
+     background-color: #f78f2e;
+ }
+
+ /* responsividade para telas pequenas */
+
+ @media (max-width: 768px) {
+     .container {
+         flex-direction: column;
+         height: auto;
+         width: 90%;
+     }
+
+     .card,
+     .info {
+         width: 100%;
+         padding: 30px;
+     }
+ }
+
+ .campo-senha {
+     position: relative;
+     width: 80%;
+ }
+
+ .campo-senha input {
+     width: 100%;
+     padding-right: 40px;
+     /* espaço para o olho */
+ }
+
+ #toggleSenha {
+     position: absolute;
+     right: 12px;
+     top: 50%;
+     transform: translateY(-50%);
+     cursor: pointer;
+     color: #aaa;
+ }

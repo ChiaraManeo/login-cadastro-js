@@ -4,9 +4,10 @@
   "description": "Projeto com autenticação Firebase e Firestore",
   "type": "module",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^29.0.0"
   }
+  
 }

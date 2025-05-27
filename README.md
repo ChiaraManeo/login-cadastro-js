@@ -130,4 +130,4 @@ Desenvolvido por **Chiara Maneo**
 
 ## 📝 Licença
 
-Este projeto é livre para fins acadêmicos e experimentais.
+Este projeto é livre para fins acadêmicos e experimentais!

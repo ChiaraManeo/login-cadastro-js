@@ -1,6 +1,6 @@
 // Importações do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc,doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -34,3 +34,11 @@ async function carregarUsuarios() {
 }
 
 carregarUsuarios();
+
+// Proteção por senha simples
+const senha = prompt("Digite a senha para acessar a lista:");
+if (senha !== "admin") {
+  alert("Acesso negado!");
+  window.location.href = "index.html"; // redireciona para a página de login ou outra
+}
+

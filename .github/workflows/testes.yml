@@ -1,8 +1,8 @@
-name: Executar Testes com Jest e Cobertura
+name: Executar Testes com Jest
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]  
   pull_request:
     branches: [ "main" ]
 
@@ -11,25 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - run: npm cache clean --force
+      - name: Instalar dependências
+        run: npm install
 
-      - run: npm install
+      - name: Rodar os testes
+        run: npx jest
 
-      - run: ls -l ./node_modules/.bin/jest
-
-      - run: chmod +x ./node_modules/.bin/jest
-
-      - name: Rodar testes com cobertura
-        run: ./node_modules/.bin/jest --coverage
-
-      - name: Fazer upload do relatório de cobertura
-        uses: actions/upload-artifact@v2
-        with:
-          name: cobertura-jest
-          path: coverage/

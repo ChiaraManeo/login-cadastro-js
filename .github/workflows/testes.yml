@@ -2,34 +2,39 @@ name: Executar Testes com Jest
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar o repositório
+      - name: Clonar repositório
         uses: actions/checkout@v3
 
-      - name: Instalar Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Limpar cache do npm
-        run: npm cache clean --force
+      - name: Cachear dependências do npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Instalar dependências
         run: npm install
 
-      - name: Verificar arquivo jest
-        run: ls -l ./node_modules/.bin/jest
+      - name: Rodar testes com coverage
+        run: npm test
 
-      - name: Ajustar permissão do jest
-        run: chmod +x ./node_modules/.bin/jest
-
-      - name: Rodar os testes
-        run: ./node_modules/.bin/jest
+      - name: Upload relatório coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: cobertura-jest
+          path: coverage/

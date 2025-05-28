@@ -61,7 +61,9 @@ carregarUsuarios();
 const senha = prompt("Digite a senha para acessar a lista:");
 if (senha !== "admin") {
     alert("Acesso negado!");
-    window.location.href = "index.html"; // redireciona para a página de login ou outra
+    window.location.href = "../index.html"; 
+} else {
+    carregarUsuarios();
 }
 
 // Excluir usuarios 
@@ -76,11 +78,11 @@ window.excluirUsuario = async function (id) {
 
 // Editar usuarios
 window.editarUsuario = function (id) {
-    window.location.href = `editar.html?id=${id}`;
+    window.location.href = `../paginas/editar.html?id=${id}`;
 
 }
 
 btnEditar.addEventListener('click', () => {
-  window.location.href = `editar.html?id=${doc.id}`;
+  window.location.href = `../paginas/editar.html?id=${doc.id}`;
 });
 

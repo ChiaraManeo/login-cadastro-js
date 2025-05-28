@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/1
 // Usa a instância de auth que expusemos no window
 const auth = window.firebaseAuth;
 
-// 1) Lógica de login
+// Lógica de login
 document.getElementById("loginForm")
   .addEventListener("submit", e => {
     e.preventDefault();
@@ -19,14 +19,14 @@ document.getElementById("loginForm")
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
         alert("Login realizado com sucesso!");
-        window.location.href = "pagina.html";
+        window.location.href = "../paginas/pagina.html";
       })
       .catch(err => {
         alert("Erro no login: " + err.message);
       });
   });
 
-// 2) Mostrar / esconder senha
+// Mostrar / esconder senha
 const senhaInput    = document.getElementById("senha");
 const toggleSenhaEl = document.getElementById("toggleSenha");
 
@@ -37,8 +37,8 @@ toggleSenhaEl.addEventListener("click", () => {
   toggleSenhaEl.classList.toggle("fa-eye-slash");
 });
 
-// 3) Botão de cadastro
+// Botão de cadastro
 document.getElementById("botaoCadastro")
   .addEventListener("click", () => {
-    window.location.href = "cadastro.html";
+    window.location.href = "../paginas/cadastro.html";
   });

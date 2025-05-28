@@ -30,7 +30,7 @@ const emailInput = document.getElementById("email");
 async function carregarDados() {
   if (!id) {
     alert("ID do usuário não encontrado.");
-    window.location.href = "usuarios.html";
+    window.location.href = "../paginas/usuarios.html";
     return;
   }
 
@@ -44,7 +44,7 @@ async function carregarDados() {
     emailInput.value = dados.email;
   } else {
     alert("Usuário não encontrado.");
-    window.location.href = "usuarios.html";
+    window.location.href = "../paginas/usuarios.html";
   }
 }
 
@@ -60,7 +60,7 @@ document.getElementById("formEditar").addEventListener("submit", async (e) => {
   });
 
   alert("Usuário atualizado com sucesso!");
-  window.location.href = "usuarios.html";
+  window.location.href = "../paginas/usuarios.html";
 });
 
 carregarDados();

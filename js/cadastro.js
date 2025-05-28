@@ -1,4 +1,4 @@
-// 1) Importar Firebase
+// Importar Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
 import {
     getAuth,
@@ -10,7 +10,7 @@ import {
     addDoc
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-// 2) Configuração do Firebase
+// Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDHKI9AmjtLB1Kj2I11E2wsFuECwXx8Nu0",
     authDomain: "meu-app-3f6c8.firebaseapp.com",
@@ -21,12 +21,12 @@ const firebaseConfig = {
     measurementId: "G-CHEYT800E7"
 };
 
-// 3) Inicializar Firebase
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// 4) Escutar o envio do formulário
+// Executar o envio do formulário
 document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -54,13 +54,13 @@ document.getElementById("cadastroForm").addEventListener("submit", async (e) => 
         });
 
         alert("Usuário cadastrado com sucesso!");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     } catch (err) {
         alert("Erro ao cadastrar: " + err.message);
     }
 });
 
-// 5) Olhinho para senha
+// Olhinho para senha
 const senhaInput = document.getElementById("senha");
 const toggleSenha = document.getElementById("toggleSenha");
 toggleSenha.addEventListener("click", () => {
@@ -70,7 +70,7 @@ toggleSenha.addEventListener("click", () => {
     toggleSenha.classList.toggle("fa-eye-slash");
 });
 
-// 6) Olhinho para confirmar senha
+// Olhinho para confirmar senha
 const confirmaInput = document.getElementById("confirmarSenha");
 const toggleConfirma = document.getElementById("toggleConfirmarSenha");
 toggleConfirma.addEventListener("click", () => {

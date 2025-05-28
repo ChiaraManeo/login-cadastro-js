@@ -32,9 +32,3 @@ jobs:
 
       - name: Rodar testes com coverage
         run: npm test
-
-      - name: Upload relatório coverage
-        uses: actions/checkout@v3
-        with:
-          name: cobertura-jest
-          path: coverage/

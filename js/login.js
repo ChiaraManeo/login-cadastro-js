@@ -1,8 +1,5 @@
-// Importa as funções de autenticação *no próprio módulo*
+import { auth } from "./firebase.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-
-// Usa a instância de auth que expusemos no window
-const auth = window.firebaseAuth;
 
 // Lógica de login
 document.getElementById("loginForm")
